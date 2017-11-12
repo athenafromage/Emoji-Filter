@@ -7,7 +7,7 @@ const fs = require('fs');
 var T = new Twit(require('./config.js'));
 
 // This is the URL of a search for the latest tweets on the '#mediaarts' hashtag.
-var mediaArtsSearch = {q: "@EmojiFilter", count: 10, result_type: "recent"}; 
+var mediaArtsSearch = {q: "@EmojiFilter", count: 10, result_type: "recent"};
 
 // This function finds the latest tweet with the #mediaarts hashtag, and retweets it.
 function retweetLatest() {
@@ -19,10 +19,10 @@ function retweetLatest() {
 	  	// ...then we grab the ID of the tweet we want to retweet...
 		//var tweetId = data.statuses[0].id_str;
 		var tweetId = {
-			status: 'domeh'
+			status: 'https://emojify.github.io/?' + data.statuses[0].entities.media[0].media_url
 		}
 		console.log(data.statuses[0].entities.media[0].media_url);
-		fs.appendFile('image-link.txt', data.statuses[0].entities.media[0].media_url);
+		//fs.appendFile('image-link.txt', data.statuses[0].entities.media[0].media_url);
 		// ...and then we tell Twitter we want to retweet it!
 		T.post('statuses/update', tweetId, function (error, tweet, response) {
 			if (response) {
